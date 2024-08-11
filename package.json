@@ -1,9 +1,12 @@
 {
+  "homepage": "https://sarrtt303.github.io/personal_portfolio",
   "name": "portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d deploy",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
