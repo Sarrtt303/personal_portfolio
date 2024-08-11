@@ -1,0 +1,170 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+  height: 100dvh;
+  min-height: 500px;
+  
+  .hero {
+    width: 150px; /* Adjusted size for circular image */
+    height: 150px; /* Match the height to make it circular */
+    border-radius: 50%; /* Makes the image circular */
+    border: 2px solid #ccc; /* Optional: Adds a border around the image */
+    object-fit: cover; /* Ensures the image covers the circle without distortion */
+    max-width: none; /* Override any max-width settings to ensure it fits as intended */
+  }
+  
+  span {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+
+    a {
+      margin: 0;
+
+      img {
+        width: 30px;
+      }
+    }
+  }
+  
+  a {
+    width: fit-content;
+    align-self: center;
+  }
+  
+  button {
+    background-color: var(--btn-color);
+    color: var(--btn-text-color);
+    border: none;
+    border-radius: 20px;
+    width: 126px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 200ms ease-in-out, transform 200ms ease-in-out;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+  }
+  
+  button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.colorModeContainer {
+  position: relative;
+}
+
+.colorMode {
+  position: absolute;
+  right: 0;
+  width: 25px;
+}
+
+.colorMode:hover {
+  cursor: pointer;
+}
+
+.description {
+  max-width: 24ch;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (width >= 800px) {
+  .container {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .hero {
+      width: 150px; /* Adjusted size for larger screens */
+      height: 150px; /* Match the height to maintain circular shape */
+    }
+  }
+}
+
+@media (width >= 1400px) {
+  .container {
+    .hero {
+      width: 200px; /* Further adjustment for very large screens */
+      height: 200px; /* Match the height to maintain circular shape */
+    }
+  }
+}
+
+/* Small Screens */
+@media (max-width: 576px) {
+  .description {
+    text-align: center; /* Center the p element on smaller screens */
+  }
+}
+/* Media Queries for Responsive Design */
+
+/* Small Screens */
+@media (max-width: 576px) {
+  .container {
+    .hero {
+      width: 15vh; /* Smaller size for small screens */
+      height: 15vh; /* Match the height to maintain circular shape */
+    }
+    p {
+      text-align: center; /* Center the p element */
+    }
+  }
+}
+
+/* Medium Screens */
+@media (min-width: 577px) and (max-width: 768px) {
+  .container {
+    .hero {
+      width: 20vh; /* Base size for medium screens */
+      height: 20vh; /* Match the height to maintain circular shape */
+    }
+  }
+}
+
+/* Large Screens */
+@media (min-width: 769px) and (max-width: 992px) {
+  .container {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .hero {
+      width: 25vh; /* Increased size for large screens */
+      height: 25vh; /* Match the height to maintain circular shape */
+    }
+  }
+}
+
+/* Extra Large Screens */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .container {
+    .hero {
+      width: 30vh; /* Larger size for extra large screens */
+      height: 30vh; /* Match the height to maintain circular shape */
+    }
+  }
+}
+
+/* Extra Extra Large Screens */
+@media (min-width: 1201px) {
+  .container {
+    .hero {
+      width: 40vh; /* Further increased size for very large screens */
+      height: 40vh; /* Match the height to maintain circular shape */
+    }
+  }
+}
