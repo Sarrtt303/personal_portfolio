@@ -1,3 +1,4 @@
+/* Original styles */
 :root {
   --background-color: #fff;
   --btn-color: #0987f2;
@@ -18,17 +19,15 @@
   --footer-text-color: #bbb;
 }
 
-/* Add this to your existing App.css */
 main {
-  padding-top: 60px; /* Adjust this value based on your header's height */
+  padding-top: 60px;
 }
 
-/* Adjust your existing styles if necessary */
 #root {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  padding-top: 60px; /* Add this line */
+  padding-top: 60px;
 }
 
 body {
@@ -38,34 +37,21 @@ body {
   margin: 0 auto 60px;
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
-
-h1,
-h2,
-h3,
-p {
+h1, h2, h3, p {
   color: var(--text-color);
   margin: 0;
   padding: 0;
 }
 
-h2,
-h3,
-p {
+h2, h3, p {
   font-family: 'Roboto Mono', monospace;
 }
 
-h1,
-h2 {
+h1, h2 {
   text-transform: uppercase;
 }
 
-h2,
-h3 {
+h2, h3 {
   font-size: 20px;
 }
 
@@ -101,21 +87,133 @@ p {
   p {
     font-size: 20px;
   }
-
   .sectionTitle {
     margin-bottom: 60px;
   }
+}
 
-  @media (width >= 1400px) {
-    #root {
-      gap: 200px;
-    }
-    h1 {
-      font-size: 48px;
-    }
-
-    .sectionTitle {
-      margin-bottom: 75px;
-    }
+@media (width >= 1400px) {
+  #root {
+    gap: 200px;
   }
+  h1 {
+    font-size: 48px;
+  }
+  .sectionTitle {
+    margin-bottom: 75px;
+  }
+}
+
+/* Base styles for the fluid container */
+.fluid-container {
+  width: 100%;
+  max-width: 1200px; /* Adjust this value as needed */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+/* Adjustments for screens below 500px */
+@media (max-width: 499px) {
+  .fluid-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #root {
+    gap: 30px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2, h3 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .sectionTitle {
+    margin-bottom: 20px;
+  }
+}
+
+/* Adjustments for screens between 500px and 767px */
+@media (min-width: 500px) and (max-width: 767px) {
+  .fluid-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  #root {
+    gap: 40px;
+  }
+}
+
+/* Adjustments for screens between 768px and 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .fluid-container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  /* Adjust the layout for 768x1024px screens */
+  .description {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Adjustments for screens 1024px and above */
+@media (min-width: 1024px) {
+  .fluid-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* Specific adjustments for 375x863px screens */
+@media (max-width: 375px) {
+  .fluid-container {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px; /* Reduce base font size */
+  }
+
+  #root {
+    gap: 20px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2, h3 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .sectionTitle {
+    margin-bottom: 15px;
+  }
+
+  /* Add zoom-out effect */
+  body {
+    zoom: 0.9;
+  }
+}
+
+/* Ensure images and other media are responsive */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
 }
