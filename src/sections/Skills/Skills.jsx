@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import styles from './SkillsStyles.module.css';
 import checkMarkIconDark from '../../assets/checkmark-dark.svg';
 import checkMarkIconLight from '../../assets/checkmark-light.svg';
 import SkillList from '../../components/SkillList';
@@ -8,7 +7,7 @@ import { useTheme } from '../../components/ThemeContext';
 function Skills() {
   const { theme } = useTheme();
   const checkMarkIcon = theme === 'light' ? checkMarkIconLight : checkMarkIconDark;
-  
+
   const allSkills = [
     "HTML", "CSS", "JavaScript", "TypeScript", "Node",
     "React", "Next", "D3", "Tailwind CSS",
@@ -29,16 +28,20 @@ function Skills() {
   const visibleSkills = allSkills.slice(startIndex, startIndex + 3);
 
   return (
-    <section id="skills" className={styles.container}>
+    <section id="skills" className="flex flex-col items-center text-center">
       <h1 className="sectionTitle">Skills</h1>
-      <div className={styles.skillCarousel}>
-        <button onClick={handlePrev} className={styles.arrowButton}>&lt;</button>
-        <div className={styles.skillList}>
+      <div className="flex items-center justify-center w-full max-w-[600px] mt-5">
+        <button onClick={handlePrev} className="text-2xl text-current hover:text-[var(--btn-color)] p-2">
+          &lt;
+        </button>
+        <div className="flex justify-center items-center gap-5 md:gap-7 w-full overflow-hidden whitespace-nowrap">
           {visibleSkills.map((skill, index) => (
             <SkillList key={index} src={checkMarkIcon} skill={skill} />
           ))}
         </div>
-        <button onClick={handleNext} className={styles.arrowButton}>&gt;</button>
+        <button onClick={handleNext} className="text-2xl text-current hover:text-[var(--btn-color)] p-2">
+          &gt;
+        </button>
       </div>
     </section>
   );

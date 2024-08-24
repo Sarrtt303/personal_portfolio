@@ -1,6 +1,3 @@
-
-import styles from './HeaderStyles.module.css';
-
 function Header() {
   const sections = ['Home', 'About', 'Projects', 'Contact'];
 
@@ -12,14 +9,14 @@ function Header() {
   };
 
   return (
-    <header className={styles.header}>
-      <nav className={styles.nav}>
-        <ul className={styles.navList}>
+    <header className="fixed top-0 left-0 right-0 bg-[var(--background-color)] shadow-md z-[1000]">
+      <nav className="flex justify-center py-4">
+        <ul className="flex list-none p-0 m-0">
           {sections.map((section) => (
-            <li key={section} className={styles.navItem}>
-              <button 
+            <li key={section} className="mx-4">
+              <button
                 onClick={() => scrollToSection(section)}
-                className={styles.navLink}
+                className="bg-none border-none text-[var(--text-color)] cursor-pointer text-base font-rubik uppercase transition-colors duration-300 ease-in-out hover:text-[var(--btn-color)]"
               >
                 {section}
               </button>
