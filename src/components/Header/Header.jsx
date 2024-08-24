@@ -16,7 +16,7 @@ function Header() {
             <li key={section} className="mx-4">
               <button
                 onClick={() => scrollToSection(section)}
-                className="bg-none border-none text-[var(--text-color)] cursor-pointer text-base font-rubik uppercase transition-colors duration-300 ease-in-out hover:text-[var(--btn-color)]"
+                className="bg-none border-none  bg-[var(--background-color)] text-[var(--text-color)] cursor-pointer text-base font-rubik uppercase transition-colors  ease-in-out hover:text-[var(--btn-color)]"
               >
                 {section}
               </button>
