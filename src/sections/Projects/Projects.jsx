@@ -14,8 +14,8 @@ function Projects() {
 
   return (
     <section id="projects" className="flex flex-col items-center text-center">
-      <h2 className="sectionTitle">Projects</h2>
-      <div className="flex flex-col items-center gap-7 mt-5 md:flex-row md:flex-wrap md:justify-evenly md:px-8">
+      <h2 className="sectionTitle text-4xl mt-10">Projects</h2>
+      <div className="grid grid-cols-1 gap-7 mt-5 md:grid-cols-2 lg:grid-cols-4">
         {projects.map((project, index) => (
           <ProjectCard
             key={index}
