@@ -7,7 +7,7 @@ function Contact() {
         <div className="bg-[var(--background-color)] border border-[var(--text-color)] rounded-2xl p-5 shadow-md flex-1">
           <h2 className="mb-4 text-[var(--text-color)]">About Me</h2>
           <p className="text-left text-[var(--text-color)]">
-            Hello, my name is Sagar Debnath. I am currently pursuing B.Tech. I believe in learning and working, to create value for others and contributing to society.
+           Over the past two years, I've honed my skills by working on a variety of projects, from building full-stack applications to crafting Python scripts for automation and learning. My journey in web development is driven by curiosity and a commitment to continuous learning. Whether it's designing intuitive user interfaces or building robust backend systems, I enjoy turning ideas into functional and visually appealing solutions. I am eager to bring my technical expertise and creativity to new challenges.
           </p>
         </div>
         

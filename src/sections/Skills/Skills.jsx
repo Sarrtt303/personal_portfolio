@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SkillList from '../../components/SkillList';
-
 import htmlIcon from '../../assets/html-5.png';
 import cssIcon from '../../assets/css-3.png';
 import jsIcon from "../../assets/js.png";
@@ -34,25 +33,15 @@ function Skills() {
 
   const [startIndex, setStartIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [direction, setDirection] = useState('');
 
-  const handlePrev = () => {
-    if (isAnimating) return;
-    setDirection('left');
-    setIsAnimating(true);
-    setTimeout(() => {
-      setStartIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : allSkills.length - 1));
-    }, 500);
-  };
-
-  const handleNext = () => {
-    if (isAnimating) return;
-    setDirection('right');
-    setIsAnimating(true);
-    setTimeout(() => {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true);
       setStartIndex((prevIndex) => (prevIndex < allSkills.length - 1 ? prevIndex + 1 : 0));
-    }, 500);
-  };
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [allSkills.length]);
 
   const visibleSkills = [
     allSkills[(startIndex - 1 + allSkills.length) % allSkills.length],
@@ -64,29 +53,21 @@ function Skills() {
     <section id="skills" className="flex flex-col items-center text-center m1-1">
       <h1 className="sectionTitle">Skills</h1>
       <div className="flex items-center justify-center w-full max-w-[900px] mt-5 overflow-hidden relative">
-        <button onClick={handlePrev} className="text-2xl text-current hover:text-[var(--btn-color)] p-2 z-10 mr-10">
-          &lt;
-        </button>
         <div
-          className={`flex justify-center items-center gap-5 md:gap-7 w-full transition-transform duration-500 ease-in-out transform ${
-            isAnimating ? (direction === 'left' ? 'translate-x-[33.33%]' : '-translate-x-[33.33%]') : ''
+          className={`flex justify-center items-center gap-5 md:gap-7 w-full transition-transform duration-1000 ease-in-out transform ${
+            isAnimating ? 'translate-x-0' : ''
           }`}
           onTransitionEnd={() => setIsAnimating(false)}
-          style={{ position: 'relative' }}
         >
           {visibleSkills.map((skill, index) => (
             <div
               key={index}
               className="w-[33.33%] flex justify-center items-center"
-              style={{ transition: 'opacity 0.5s ease-in-out' }}
             >
               <SkillList src={skill.icon} skill={skill.name} />
             </div>
           ))}
         </div>
-        <button onClick={handleNext} className="text-2xl text-current hover:text-[var(--btn-color)] p-2 ml-10 z-10">
-          &gt;
-        </button>
       </div>
     </section>
   );
