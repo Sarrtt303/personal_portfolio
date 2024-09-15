@@ -6,7 +6,9 @@ function Footer() {
       <p>
         &copy; 2024 Sagar Debnath. <br />
         All rights reserved.
+        <a href="https://github.com/Sarrtt303/personal_portfolio" className='text-gray-300 text-sm pl-5'>Source Code</a>
       </p>
+      
     </section>
   );
 }

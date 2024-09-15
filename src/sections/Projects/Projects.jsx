@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import FullStack from '../../assets/FullStack.png';
-import container from '../../assets/container.png';
+import MeetApp from '../../assets/meetapp.png';
 import ProjectCard from '../../components/ProjectCard';
 import ProductDisplay from '../../assets/ProductDisplay.png';
 import whatweather from '../../assets/whatweather.png';
@@ -12,7 +12,7 @@ function Projects() {
     { src: ProductDisplay, link: "https://github.com/Sarrtt303/productDisplay", title: "Product Display", description: "Display products from API", skill: "Tools" },
     { src: whatweather, link: "https://github.com/Sarrtt303/whatweather?tab=readme-ov-file", title: "WhatWeather", description: "Weather Display App", skill: "Web Designs" },
     { src: FullStack, link: "https://github.com/Sarrtt303/Full-Stack-Assignment", title: "FullStack App", description: "App that saves your info in MongoDB", skill: "Other Projects" },
-    { src: container, link: "https://github.com/Sarrtt303/dt-container-page/tree/main", title: "Container", description: "Assignment for DeepThought", skill: "Tools" },
+    { src: MeetApp, link: "https://github.com/Sarrtt303/meet-app", title: "Meet-App", description: "Uses Google Calendar API to create and join meetings", skill: "Tools" },
   ];
 
   const filteredProjects = selectedSkill === 'All'

@@ -38,7 +38,7 @@ function Skills() {
     const interval = setInterval(() => {
       setIsAnimating(true);
       setStartIndex((prevIndex) => (prevIndex < allSkills.length - 1 ? prevIndex + 1 : 0));
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [allSkills.length]);
