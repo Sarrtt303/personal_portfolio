@@ -1,28 +1,27 @@
 import './App.css'
-import Contact from './sections/Contact/Contact'
-import Hero from './sections/Hero/Hero'
-import Projects from './sections/Projects/Projects'
-import Skills from './sections/Skills/Skills'
-import Footer from './sections/Footer/Footer'
-import Header from './components/Header/Header';
-import StarryBackground from './components/StarryBackground';
+import { useTheme } from './components/ThemeContext';
+import Contact from './sections/Contact/Contact.jsx'
+import Hero from './sections/Hero/Hero.jsx'
+import Projects from './sections/Projects/Projects.jsx'
+import Skills from './sections/Skills/Skills.jsx'
+import Footer from './sections/Footer/Footer.jsx'
+import Header from './components/Header/Header.jsx';
+import StarryBackground from './components/StarryBackground.jsx';
 
 function App() {
+  const { theme } = useTheme();
+
   return (
-    <div className="relative fluid-container">
-      {/* Ensure that Header has a background and stays above the starry background */}
-      <header className="relative z-10 bg-white">
+    <div className={`relative fluid-container`} data-theme={theme}>
+      <header className="relative z-30 bg-white dark:bg-gray-800">
         <Header />
       </header>
 
-      {/* Starry background should be positioned behind everything and cover the full viewport */}
-      <div className="fixed inset-0 z-0">
-        <StarryBackground />
+      <div className="fixed inset-0 z-10">
+        <StarryBackground theme={theme} />
       </div>
 
-      {/* Main content */}
-      <main className="relative z-10">
-        {/* Sections that will be on top of the background */}
+      <main className="relative z-20">
         <section id="home" className="relative">
           <Hero />
           <Skills />
@@ -33,8 +32,7 @@ function App() {
         </section>
       </main>
 
-      {/* Footer */}
-      <section id="footer" className="relative z-10">
+      <section id="footer" className="relative z-30">
         <Footer />
       </section>
     </div>
