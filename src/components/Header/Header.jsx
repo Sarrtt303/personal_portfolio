@@ -1,5 +1,5 @@
 function Header() {
-  const sections = ['Home', 'About', 'Projects', 'Contact'];
+  const sections = ['Home', 'Skills', 'Projects', 'Contact'];
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId.toLowerCase());

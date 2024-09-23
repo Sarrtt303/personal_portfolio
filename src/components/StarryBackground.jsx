@@ -2,7 +2,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {  useRef } from 'react';
+import { useRef } from 'react';
 import * as THREE from 'three';
 
 const StarField = ({ theme }) => {
@@ -14,8 +14,6 @@ const StarField = ({ theme }) => {
       starsRef.current.material.color = newColor;
     }
   }, [theme]);
-
-  
 
   return (
     <Stars
@@ -37,60 +35,71 @@ StarField.propTypes = {
 const StarryBackground = ({ theme }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [targetRotation, setTargetRotation] = useState({ x: 0, y: 0 });
-  
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Handle mouse movement for parallax effect
+  // Detect if the device is mobile
+  useEffect(() => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (/mobi|android|tablet|ipad|iphone/.test(userAgent)) {
+      setIsMobile(true);
+    }
+  }, []);
+
+  // Handle mouse movement for desktop parallax effect
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
     setMousePosition({
-      x: (clientX / window.innerWidth) * 2 - 1,  // Normalize to -1 to 1
-      y: -(clientY / window.innerHeight) * 2 + 1  // Invert Y axis
+      x: (clientX / window.innerWidth) * 2 - 1, // Normalize to -1 to 1
+      y: -(clientY / window.innerHeight) * 2 + 1, // Invert Y axis
     });
   };
-   
-  useEffect(()=>{
-    const handleDeviceOrientation=(event)=>{
-      const {beta, gamma}= event;
-      const xTilt= gamma/90;
-      const yTilt= beta/180;
-      setTargetRotation({
-        x: yTilt * 0.1,
-        y: xTilt* 0.1,
-      })
-    }
-    if(window.DeviceOrientationEvent){
-      window.addEventListener('deviceorientaion', handleDeviceOrientation)
-    } return ()=>{
-      window.removeEventListener('deviceorientation', handleDeviceOrientation);
-    }
-  },[])
 
+  // Handle device orientation effect for mobile devices
+  const handleDeviceOrientation = (event) => {
+    const beta = event.beta; // front-back tilt in degrees
+    const gamma = event.gamma; // left-right tilt in degrees
+    const xTilt = gamma / 90; // Normalize to -1 to 1
+    const yTilt = beta / 180; // Normalize to -1 to 1
+    setTargetRotation({
+      x: yTilt * 0.1,
+      y: xTilt * 0.1,
+    });
+  };
 
   useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    if (isMobile) {
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', handleDeviceOrientation);
+      }
+    } else {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
 
-  
+    return () => {
+      if (isMobile && window.DeviceOrientationEvent) {
+        window.removeEventListener('deviceorientation', handleDeviceOrientation);
+      }
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [isMobile]);
 
   return (
     <Canvas className="absolute inset-0 z-0 pointer-events-none">
-      <StarField theme={theme}/>
+      <StarField theme={theme} />
       <CameraController mousePosition={mousePosition} targetRotation={targetRotation} />
     </Canvas>
   );
 };
 
 StarryBackground.propTypes = {
-  theme: PropTypes.oneOf(['light', 'dark']).isRequired,  
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired,
 };
 
-// Camera controller to apply parallax movement
 const CameraController = ({ mousePosition, targetRotation }) => {
   useFrame(({ camera }) => {
-
-    camera.position.x = mousePosition.x * 0.2;  // Adjust for more or less movement
-    camera.position.y = mousePosition.y * 0.2;  // Adjust for more or less movement
+    // Apply mouse-based movement for desktops
+    camera.position.x = mousePosition.x * 0.2;
+    camera.position.y = mousePosition.y * 0.2;
 
     // Smoothly adjust camera rotation for device tilt
     camera.rotation.x += (targetRotation.x - camera.rotation.x) * 0.1;
@@ -98,8 +107,9 @@ const CameraController = ({ mousePosition, targetRotation }) => {
 
     camera.lookAt(0, 0, 0);
   });
+
   return null;
-  };
+};
 
 CameraController.propTypes = {
   mousePosition: PropTypes.shape({
@@ -109,7 +119,7 @@ CameraController.propTypes = {
   targetRotation: PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
-  }).isRequired,  
+  }).isRequired,
 };
 
 export default StarryBackground;
