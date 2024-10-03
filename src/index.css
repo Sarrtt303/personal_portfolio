@@ -71,3 +71,15 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+@keyframes loop-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--scroll-width) / 3));
+  }
+}
+
+.animate-loop-scroll {
+  animation: loop-scroll 30s linear infinite;
+}
