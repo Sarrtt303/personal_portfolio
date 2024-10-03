@@ -17,7 +17,7 @@ function App() {
         <Header />
       </header>
 
-      <div className="fixed inset-0 z-10">
+      <div className="fixed inset-0 z-10 md-block">
         <StarryBackground theme={theme} />
       </div>
 

@@ -7,6 +7,7 @@ import * as THREE from 'three';
 
 const StarField = ({ theme }) => {
   const starsRef = useRef();
+  const isMobile = window.innerWidth < 768;
 
   useEffect(() => {
     if (starsRef.current) {
@@ -14,12 +15,16 @@ const StarField = ({ theme }) => {
       starsRef.current.material.color = newColor;
     }
   }, [theme]);
+   
+   // Set smaller radius and depth for mobile devices
+  const radius = isMobile ? 50 : 70;
+  const depth = isMobile ? 5 : 10;
 
   return (
     <Stars
       ref={starsRef}
-      radius={70}
-      depth={10}
+      radius={radius}
+      depth={depth}
       count={5000}
       factor={4}
       saturation={0}
@@ -65,6 +70,19 @@ const StarryBackground = ({ theme }) => {
       y: xTilt * 0.1,
     });
   };
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Update mobile state on resize
+    };
+  
+    window.addEventListener('resize', handleResize);
+  
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
 
   useEffect(() => {
     if (isMobile) {
