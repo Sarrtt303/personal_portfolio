@@ -30,7 +30,7 @@ function Hero() {
           alt="Profile picture of Harris Johnsen"
         />
         <img
-          className="absolute -bottom-8 right-1/4 w-[25px] cursor-pointer md:bottom-auto md:top-0 md:right-0"
+          className="absolute -bottom-8 right-1/4 w-[25px] cursor-pointer md:bottom-auto md:top-0 md:right-0 sm:w-10 sm:h-10 md:w-12 md:h-12"
           src={themeIcon}
           alt="Color mode icon"
           onClick={toggleTheme}
