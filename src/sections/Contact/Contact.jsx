@@ -1,8 +1,9 @@
 function Contact() {
   return (
     <section id="contact" className="flex flex-col items-center text-center text-[var(--text-color)] py-10 px-4 md:px-8 lg:px-16">
+    <div className="w-full max-w-7xl bg-[var(--background-color)] border border-[var(--text-color)] rounded-3xl p-8">
       <h1 className="sectionTitle mb-10">Contact</h1>
-
+     
       {/* Use flex-col for small screens, flex-row for larger screens */}
       <div className="flex flex-col gap-8 mb-10 w-full md:flex-row md:justify-between">
         {/* About Me Section */}
@@ -74,6 +75,7 @@ function Contact() {
           Submit
         </button>
       </form>
+      </div>
     </section>
   );
 }

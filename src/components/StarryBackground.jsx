@@ -1,39 +1,78 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
-import * as THREE from 'three';
 
-const StarField = ({ theme }) => {
-  const starsRef = useRef();
+const DualStarField = ({ theme }) => {
+  const whiteStarsRef = useRef();
+  const blackStarsRef = useRef();
   const isMobile = window.innerWidth < 768;
-
-  useEffect(() => {
-    if (starsRef.current) {
-      const newColor = theme === 'light' ? new THREE.Color('black') : new THREE.Color('white');
-      starsRef.current.material.color = newColor;
-    }
-  }, [theme]);
-   
-   // Set smaller radius and depth for mobile devices
-  const radius = isMobile ? 50 : 70;
+  
+  // Set smaller radius and depth for mobile devices
+  const radius = isMobile ? 50 : 100;
   const depth = isMobile ? 5 : 10;
 
+  // Define base configurations for both star fields
+  const baseConfig = {
+    radius,
+    depth,
+    count: 5000,
+    factor: 4,
+    saturation: 0,
+    fade: false,
+  };
+
+  // Specific configs for each star type
+  const whiteStarConfig = {
+    ...baseConfig,
+    fade: true,
+  };
+
+  const blackStarConfig = {
+    ...baseConfig,
+    // Increase count and factor for better visibility
+    count: 6000,
+    factor: 5,
+    fade: false, // Disable fade for better contrast
+  };
+
   return (
-    <Stars
-      ref={starsRef}
-      radius={radius}
-      depth={depth}
-      count={5000}
-      factor={4}
-      saturation={0}
-      fade={true}
-    />
+    <group>
+      {/* White stars - visible in dark mode */}
+      <Stars
+        ref={whiteStarsRef}
+        {...whiteStarConfig}
+        color="white"
+        opacity={theme === 'dark' ? 1 : 0}
+        transparent={true}
+      />
+      
+      {/* Dark stars - visible in light mode */}
+      <Stars
+        ref={blackStarsRef}
+        {...blackStarConfig}
+        color="#171717" // Very dark gray instead of pure black
+        position={[0, 0, 0.1]}
+        opacity={theme === 'light' ? 0.8 : 0} // Slightly reduced opacity
+        transparent={true}
+      />
+
+      {/* Additional layer of darker stars for better depth */}
+      {theme === 'light' && (
+        <Stars
+          {...blackStarConfig}
+          color="#111111" // Slightly lighter dark gray
+          position={[0, 0, 0.2]}
+          opacity={0.5}
+          transparent={true}
+          count={4000} // Fewer stars in this layer
+        />
+      )}
+    </group>
   );
 };
 
-StarField.propTypes = {
+DualStarField.propTypes = {
   theme: PropTypes.oneOf(['light', 'dark']).isRequired,
 };
 
@@ -42,7 +81,6 @@ const StarryBackground = ({ theme }) => {
   const [targetRotation, setTargetRotation] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
 
-  // Detect if the device is mobile
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (/mobi|android|tablet|ipad|iphone/.test(userAgent)) {
@@ -50,39 +88,33 @@ const StarryBackground = ({ theme }) => {
     }
   }, []);
 
-  // Handle mouse movement for desktop parallax effect
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
     setMousePosition({
-      x: (clientX / window.innerWidth) * 2 - 1, // Normalize to -1 to 1
-      y: -(clientY / window.innerHeight) * 2 + 1, // Invert Y axis
+      x: (clientX / window.innerWidth) * 2 - 1,
+      y: -(clientY / window.innerHeight) * 2 + 1,
     });
   };
 
-  // Handle device orientation effect for mobile devices
   const handleDeviceOrientation = (event) => {
-    const beta = event.beta; // front-back tilt in degrees
-    const gamma = event.gamma; // left-right tilt in degrees
-    const xTilt = gamma / 90; // Normalize to -1 to 1
-    const yTilt = beta / 180; // Normalize to -1 to 1
+    const beta = event.beta;
+    const gamma = event.gamma;
+    const xTilt = gamma / 90;
+    const yTilt = beta / 180;
     setTargetRotation({
       x: yTilt * 0.1,
       y: xTilt * 0.1,
     });
   };
-  
+
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Update mobile state on resize
+      setIsMobile(window.innerWidth < 768);
     };
-  
+    
     window.addEventListener('resize', handleResize);
-  
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
-  
 
   useEffect(() => {
     if (isMobile) {
@@ -103,7 +135,7 @@ const StarryBackground = ({ theme }) => {
 
   return (
     <Canvas className="absolute inset-0 z-0 pointer-events-none">
-      <StarField theme={theme} />
+      <DualStarField theme={theme} />
       <CameraController mousePosition={mousePosition} targetRotation={targetRotation} />
     </Canvas>
   );
@@ -115,14 +147,10 @@ StarryBackground.propTypes = {
 
 const CameraController = ({ mousePosition, targetRotation }) => {
   useFrame(({ camera }) => {
-    // Apply mouse-based movement for desktops
     camera.position.x = mousePosition.x * 0.2;
     camera.position.y = mousePosition.y * 0.2;
-
-    // Smoothly adjust camera rotation for device tilt
     camera.rotation.x += (targetRotation.x - camera.rotation.x) * 0.1;
     camera.rotation.y += (targetRotation.y - camera.rotation.y) * 0.1;
-
     camera.lookAt(0, 0, 0);
   });
 

@@ -16,7 +16,7 @@ function Header() {
             <li key={section} className="flex-shrink-0">
               <button
                 onClick={() => scrollToSection(section)}
-                className="bg-none border-none bg-[var(--background-color)] text-[var(--text-color)] cursor-pointer text-xs sm:text-sm md:text-base font-rubik uppercase transition-colors ease-in-out hover:text-[var(--btn-color)] px-2 sm:px-3 md:px-4 py-2"
+                className="bg-none border-none bg-[var(--background-color)] text-[var(--text-color)] cursor-pointer text-xs sm:text-sm md:text-base font-rubik uppercase  hover:text-[var(--btn-color)] px-2 sm:px-3 md:px-4 py-2"
               >
                 {section}
               </button>
