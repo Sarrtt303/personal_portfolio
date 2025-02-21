@@ -10,8 +10,7 @@ function Contact() {
         <div className="bg-[var(--background-color)] border border-[var(--text-color)] rounded-2xl p-4 sm:p-5 shadow-md w-full md:w-[48%] mx-auto">
           <h2 className="mb-4 text-[var(--text-color)] text-lg sm:text-xl">About Me</h2>
           <p className="text-left text-[var(--text-color)] leading-relaxed">
-            Over the past two years, I have honed my skills by working on a variety of projects, from building full-stack applications to crafting Python scripts for automation and learning. My journey in web development is driven by curiosity and a commitment to continuous learning. Whether it is designing intuitive user interfaces or building robust backend systems, I enjoy turning ideas into functional and visually appealing solutions. I am eager to bring my technical expertise and creativity to new challenges.
-          </p>
+          Over the past two years, I’ve refined my skills by working on diverse projects, ranging from full-stack web applications to Python automation scripts. My passion for web development is driven by a continuous pursuit of learning and a desire to create impactful, user-centric solutions. Whether designing intuitive interfaces or developing scalable backend systems, I thrive on transforming ideas into seamless, functional experiences. I am excited to apply my technical expertise and creative problem-solving abilities to new challenges and contribute to innovative projects.          </p>
         </div>
 
         {/* Contact Information Section */}
