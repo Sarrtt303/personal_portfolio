@@ -1,4 +1,31 @@
+
+import { useRef,useState } from 'react';
+import emailjs from '@emailjs/browser';
+
 function Contact() {
+  const formRef = useRef();
+ const [status, setStatus] = useState('');
+
+
+  const sendEmail = (e) => {
+  e.preventDefault(); // Prevents page reload
+
+  emailjs
+    .sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,   // Replace with your actual template ID
+      formRef.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY     // Replace with your actual public key
+    )
+    .then(() => {
+      setStatus('Message sent successfully!');
+      formRef.current.reset();
+    })
+    .catch((error) => {
+      console.error('EmailJS Error:', error);
+      setStatus('Failed to send message. Please try again.');
+    });
+};
   return (
     <section id="contact" className="flex flex-col items-center text-center text-[var(--text-color)] py-10 px-4 md:px-8 lg:px-16">
     <div className="w-full max-w-7xl bg-[var(--background-color)] border border-[var(--text-color)] rounded-3xl p-8">
@@ -25,7 +52,7 @@ function Contact() {
       </div>
 
       {/* Contact Form */}
-      <form className="flex flex-col gap-8 md:gap-10 w-full">
+      <form  ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-8 md:gap-10 w-full">
         <h2 className="mb-5 text-[var(--text-color)]">Get in Touch</h2>
 
         {/* Name Input */}
@@ -73,6 +100,11 @@ function Contact() {
         >
           Submit
         </button>
+        {status && (
+          <p className={`text-center mt-2 ${status.includes('fail') ? 'text-red-500' : 'text-green-500'}`}>
+            {status}
+          </p>
+        )}
       </form>
       </div>
     </section>
