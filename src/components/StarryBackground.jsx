@@ -3,10 +3,19 @@ import { Stars } from '@react-three/drei';
 import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-const DualStarField = ({ theme }) => {
+const DualStarField = ({ theme, scrollOffset }) => {
   const whiteStarsRef = useRef();
   const blackStarsRef = useRef();
+  const groupRef = useRef();
   const isMobile = window.innerWidth < 768;
+  
+  useFrame(() => {
+    if (groupRef.current) {
+      const offset = scrollOffset * 0.001; // Adjust speed
+      groupRef.current.position.x = offset;
+      groupRef.current.position.y = -offset;
+    }
+  });
   
   // Set smaller radius and depth for mobile devices
   const radius = isMobile ? 50 : 100;
@@ -74,13 +83,25 @@ const DualStarField = ({ theme }) => {
 
 DualStarField.propTypes = {
   theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+  scrollOffset: PropTypes.number,
+  
 };
+
 
 const StarryBackground = ({ theme }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [targetRotation, setTargetRotation] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
+  const [scrollOffset, setScrollOffset] = useState(0);
 
+  useEffect(() => {
+  const handleScroll = () => {
+    setScrollOffset(window.scrollY);
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (/mobi|android|tablet|ipad|iphone/.test(userAgent)) {
@@ -135,7 +156,7 @@ const StarryBackground = ({ theme }) => {
 
   return (
     <Canvas className="absolute inset-0 z-0 pointer-events-none">
-      <DualStarField theme={theme} />
+      <DualStarField theme={theme} scrollOffset={scrollOffset}/>
       <CameraController mousePosition={mousePosition} targetRotation={targetRotation} />
     </Canvas>
   );

@@ -1,6 +1,7 @@
 
 import { useRef,useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 
 function Contact() {
   const formRef = useRef();
@@ -37,22 +38,22 @@ function Contact() {
         <div className="bg-[var(--background-color)] border border-[var(--text-color)] rounded-2xl p-4 sm:p-5 shadow-md w-full md:w-[48%] mx-auto">
           <h2 className="mb-4 text-[var(--text-color)] text-lg sm:text-xl">About Me</h2>
           <p className="text-left text-[var(--text-color)] leading-relaxed">
-          Over the past two years, I’ve refined my skills by working on diverse projects, ranging from full-stack web applications to Python automation scripts. My passion for web development is driven by a continuous pursuit of learning and a desire to create impactful, user-centric solutions. Whether designing intuitive interfaces or developing scalable backend systems, I thrive on transforming ideas into seamless, functional experiences. I am excited to apply my technical expertise and creative problem-solving abilities to new challenges and contribute to innovative projects.          </p>
+          Over the past two years, I’ve worked on a range of projects—from full-stack web applications to Python automation scripts. I’m passionate about creating intuitive, scalable, and user-focused digital solutions. Whether it’s designing clean interfaces or building efficient backend systems, I thrive on solving real-world problems with technology. I’m always eager to explore new tools and technologies and contribute to impactful projects.</p>
         </div>
 
         {/* Contact Information Section */}
         <div className="bg-[var(--background-color)] border border-[var(--text-color)] rounded-2xl p-4 sm:p-5 shadow-md w-full md:w-[48%] mx-auto">
           <h2 className="mb-4 text-[var(--text-color)] text-lg sm:text-xl">Contact Information</h2>
           <ul className="list-none p-0 text-left leading-relaxed">
-            <li className="mb-2 text-[var(--text-color)] text-lg sm:text-2xl">Email: sagardebnath1001@gmail.com</li>
-            <li className="mb-2 text-[var(--text-color)] text-lg sm:text-2xl">Phone: 9383270893</li>
-            <li className="text-[var(--text-color)] text-lg sm:text-2xl">Location: Agartala, Tripura/India</li>
+            <li className="mb-2 text-[var(--text-color)] text-lg sm:text-xl"><FiMail className="inline mr-2" />Mail: sagardebnath1001@gmail.com</li>
+            <li className="mb-2 text-[var(--text-color)] text-lg sm:text-xl"><FiPhone className="inline mr-2" />Phone: 9383270893</li>
+            <li className="text-[var(--text-color)] text-lg sm:text-xl"><FiMapPin className="inline mr-2" />Location: Agartala, Tripura/India</li>
           </ul>
         </div>
       </div>
 
       {/* Contact Form */}
-      <form  ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-8 md:gap-10 w-full">
+      <form  ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-8 md:gap-10  focus:ring-2 focus:ring-[var(--btn-color)] outline-none">
         <h2 className="mb-5 text-[var(--text-color)]">Get in Touch</h2>
 
         {/* Name Input */}

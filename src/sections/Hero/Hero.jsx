@@ -7,7 +7,7 @@ import githubLight from '../../assets/github-light.svg';
 import githubDark from '../../assets/github-dark.svg';
 import linkedinLight from '../../assets/linkedin-light.svg';
 import linkedinDark from '../../assets/linkedin-dark.svg';
-import CV from '../../assets/cv.pdf';
+import CV from '../../assets/cv(may2025).pdf';
 import { useTheme } from '../../components/ThemeContext';
 
 function Hero() {
@@ -52,7 +52,7 @@ function Hero() {
           </a>
         </span>
         <p className="max-w-[24ch] text-center">
-          Passion for developing modern web apps using React, Tailwind, Next.js, and learning new technologies to facilitate building commercial businesses.
+         I craft modern, scalable web applications using React, Tailwind CSS, and Next.js — with a focus on clean code, real-world performance, and best industry practices. Every project is built with care, reliability, and a commitment to delivering high-quality user experiences that drive real business results.
         </p>
         <a href={CV} download className="self-center">
           <button className="bg-[var(--btn-color)] text-[var(--btn-text-color)] rounded-full w-[126px] h-[50px] text-lg font-bold shadow-md transition-transform duration-200 ease-in-out transform hover:scale-105 active:translate-y-0.5 active:shadow-sm">
