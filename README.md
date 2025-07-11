@@ -17,3 +17,6 @@ Subtle z-axis drift: Introduce slow z axis motion on scroll for a deeper 3D effe
 Tweening / inertia: Use damping (e.g., lerp) to smooth scroll/tilt transitions.
 
 Combine with post-processing effects like bloom or motion blur for a more cinematic background.
+
+
+We can set the background to skyblue add 3d clouds for night and the starry background as is for day

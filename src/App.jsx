@@ -12,14 +12,16 @@ function App() {
   const { theme } = useTheme();
 
   return (
+    <>
+     <div className="fixed inset-0 z-10 md-block h-full w-full ">
+        <StarryBackground theme={theme} />
+      </div>
     <div className={`relative fluid-container`} data-theme={theme}>
       <header className="relative z-30 bg-white dark:bg-gray-800">
         <Header />
       </header>
 
-      <div className="fixed inset-0 z-10 md-block">
-        <StarryBackground theme={theme} />
-      </div>
+     
 
       <main className="relative z-20">
         <section id="home" className="relative">
@@ -36,6 +38,7 @@ function App() {
         <Footer />
       </section>
     </div>
+    </>
   );
 }
 

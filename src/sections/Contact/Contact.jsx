@@ -28,21 +28,21 @@ function Contact() {
     });
 };
   return (
-    <section id="contact" className="flex flex-col items-center text-center text-[var(--text-color)] py-10 px-4 md:px-8 lg:px-16">
-    <div className="w-full max-w-7xl bg-[var(--background-color)] border border-[var(--text-color)] rounded-3xl p-8">
+    <section id="contact" className="flex flex-col items-center text-center text-[var(--text-color)] py-10 px-4 md:px-8 lg:px-16 ">
+    <div className="w-1/3 h-1/3 ml-3 md:w-full md:max-w-7xl md:bg-[var(--background-color)] md:border border-[var(--text-color)] rounded-3xl md:p-8  ">
       <h1 className="sectionTitle mb-10">Contact</h1>
      
       {/* Use flex-col for small screens, flex-row for larger screens */}
-      <div className="flex flex-col gap-8 mb-10 w-full md:flex-row md:justify-between">
+      <div className="flex flex-col gap-8 mb-10 md:w-full md:flex-row md:justify-between">
         {/* About Me Section */}
-        <div className="bg-[var(--background-color)] border border-[var(--text-color)] rounded-2xl p-4 sm:p-5 shadow-md w-full md:w-[48%] mx-auto">
+        <div className="bg-[var(--background-color)] border border-[var(--text-color)] rounded-2xl p-4 sm:p-5 shadow-md md:w-[48%] sm:w-[24%] mx-auto">
           <h2 className="mb-4 text-[var(--text-color)] text-lg sm:text-xl">About Me</h2>
           <p className="text-left text-[var(--text-color)] leading-relaxed">
           Over the past two years, I’ve worked on a range of projects—from full-stack web applications to Python automation scripts. I’m passionate about creating intuitive, scalable, and user-focused digital solutions. Whether it’s designing clean interfaces or building efficient backend systems, I thrive on solving real-world problems with technology. I’m always eager to explore new tools and technologies and contribute to impactful projects.</p>
         </div>
 
         {/* Contact Information Section */}
-        <div className="bg-[var(--background-color)] border border-[var(--text-color)] rounded-2xl p-4 sm:p-5 shadow-md w-full md:w-[48%] mx-auto">
+        <div className="bg-[var(--background-color)] border border-[var(--text-color)] rounded-2xl p-4  shadow-md md:w-[48%]  mx-auto">
           <h2 className="mb-4 text-[var(--text-color)] text-lg sm:text-xl">Contact Information</h2>
           <ul className="list-none p-0 text-left leading-relaxed">
             <li className="mb-2 text-[var(--text-color)] text-lg sm:text-xl"><FiMail className="inline mr-2" />Mail: sagardebnath1001@gmail.com</li>

@@ -21,16 +21,16 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="flex flex-col justify-center gap-5 text-center h-[100dvh] min-h-[500px] md:flex-row-reverse md:justify-evenly lg:flex-row lg:justify-evenly xl:justify-evenly xl:gap-10"
+      className="flex flex-col justify-center gap-5 text-center md:h-[100dvh] min-h-[500px] md:flex-row-reverse md:justify-evenly lg:flex-row lg:justify-evenly xl:justify-evenly xl:gap-10"
     >
       <div className="relative flex flex-col items-center mb-4 md:mb-0">
         <img
           src={heroImg}
           className="w-[150px] h-[150px] rounded-full border-2 border-gray-300 object-cover md:w-[25vh] md:h-[25vh] lg:w-[30vh] lg:h-[30vh] xl:w-[40vh] xl:h-[40vh] transition-width duration-300 ease-in-out"
-          alt="Profile picture of Harris Johnsen"
+          alt="Profile picture of RInkiya KE PapA"
         />
         <img
-          className="absolute -bottom-8 right-1/4 w-[25px] cursor-pointer md:bottom-auto md:top-0 md:right-0 sm:w-10 sm:h-10 md:w-12 md:h-12"
+          className="absolute bottom-8  w-10 cursor-pointer md:bottom-auto md:top-0 md:right-0  md:w-12 md:h-12"
           src={themeIcon}
           alt="Color mode icon"
           onClick={toggleTheme}
