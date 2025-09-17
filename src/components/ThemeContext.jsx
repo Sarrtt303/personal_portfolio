@@ -1,5 +1,5 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { createContext, useContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 const ThemeContext = createContext();
 
@@ -7,16 +7,16 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(
-    () => localStorage.getItem('theme') || 'light'
+    () => localStorage.getItem("theme") || "light",
   );
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
   return (
@@ -27,7 +27,7 @@ export const ThemeProvider = ({ children }) => {
 };
 
 ThemeProvider.propTypes = {
-    children: PropTypes.node.isRequired
-  };
+  children: PropTypes.node.isRequired,
+};
 
 export default ThemeProvider;

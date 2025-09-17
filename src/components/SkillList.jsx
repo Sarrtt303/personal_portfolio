@@ -1,9 +1,8 @@
-import PropTypes from 'prop-types';
-
+import PropTypes from "prop-types";
 
 function SkillList({ src, skill }) {
   return (
-    <div className='skills'>
+    <div className="skills">
       <img src={src} alt={`${skill} icon`} />
       <p>{skill}</p>
     </div>

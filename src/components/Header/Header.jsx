@@ -1,10 +1,10 @@
 function Header() {
-  const sections = ['Home', 'Skills', 'Projects', 'Contact'];
+  const sections = ["Home", "Skills", "Projects", "Contact"];
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId.toLowerCase());
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 function ProjectCard({ src, link, h3, p }) {
   return (
