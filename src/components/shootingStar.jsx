@@ -43,7 +43,7 @@ const ShootingStars = () => {
             ctx.beginPath();
             ctx.moveTo(this.x, this.y);
             ctx.lineTo(this.x + this.len, this.y - this.len);
-            ctx.strokeStyle = '#ffffff';
+            ctx.strokeStyle = '#FFED8A';
             ctx.stroke();
           }
         } else {

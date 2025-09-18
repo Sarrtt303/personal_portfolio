@@ -7,7 +7,7 @@ import Skills from "./sections/Skills/Skills.jsx";
 import Footer from "./sections/Footer/Footer.jsx";
 import Header from "./components/Header/Header.jsx";
 import StarryBackground from "./components/StarryBackground.jsx";
-import ShootingStars from "./components/shottingStar.jsx";
+import ShootingStars from "./components/shootingStar.jsx";
 
 function App() {
   const { theme } = useTheme();
