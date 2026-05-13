@@ -1,6 +1,6 @@
 
 
-import Hom from "../../assets/Homchang.png";
+import Hom from "../../assets/homchang.png";
 import Lotus from "../../assets/Lotusedu.png";
 import bot_logs from "../../assets/bot_logs.png";
 import whatweather from "../../assets/whatweather.png";
