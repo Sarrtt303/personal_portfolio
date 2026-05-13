@@ -1,4 +1,16 @@
+import { useTheme } from "../ThemeContext";
+import sun from "../../assets/sun.svg";
+import moon from "../../assets/moon.svg";
+
+
+
 function Header() {
+  const { theme, toggleTheme } = useTheme();
+
+  const themeIcon = theme === "light" ? sun : moon;
+  // const twitterIcon = theme === "light" ? twitterLight : twitterDark;
+  // const githubIcon = theme === "light" ? githubLight : githubDark;
+  // const linkedinIcon = theme === "light" ? linkedinLight : linkedinDark;
   const sections = ["Home", "Skills", "Projects", "Contact"];
 
   const scrollToSection = (sectionId) => {
@@ -23,6 +35,29 @@ function Header() {
             </li>
           ))}
         </ul>
+        <div className="flex-1 flex justify-end">
+          <button className="bg-[var(--background-color)] border-none h-10 cursor-pointer flex items-center justify-center gap-2" onClick={toggleTheme}>
+            <h1 className="text-[var(--text-color)] text-xs sm:text-sm md:text-base font-rubik"></h1>
+            <img
+              className="
+              relative
+              z-20
+              w-6
+              h-6
+              cursor-pointer
+              md:bottom-auto
+              md:top-0
+              md:right-0
+              md:w-7
+              md:h-7
+            "
+              src={themeIcon}
+              alt="Color mode icon"
+
+            />
+          </button>
+        </div>
+
       </nav>
     </header>
   );

@@ -1,20 +1,25 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiSend,
+} from "react-icons/fi";
 
 function Contact() {
   const formRef = useRef();
   const [status, setStatus] = useState("");
 
   const sendEmail = (e) => {
-    e.preventDefault(); // Prevents page reload
+    e.preventDefault();
 
     emailjs
       .sendForm(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID, // Replace with your actual template ID
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         formRef.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY, // Replace with your actual public key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       )
       .then(() => {
         setStatus("Message sent successfully!");
@@ -22,124 +27,382 @@ function Contact() {
       })
       .catch((error) => {
         console.error("EmailJS Error:", error);
-        setStatus("Failed to send message. Please try again.");
+        setStatus(
+          "Failed to send message. Please try again.",
+        );
       });
   };
+
   return (
     <section
       id="contact"
-      className="flex flex-col items-center text-center text-[var(--text-color)] py-10 px-4 md:px-8 lg:px-16 "
+      className="
+        relative
+        px-4
+        py-24
+        md:px-8
+      "
     >
-      <div className="w-1/3 h-1/3 ml-3 md:w-full md:max-w-7xl md:bg-[var(--background-color)] md:border border-[var(--text-color)] rounded-3xl md:p-8  ">
-        <h1 className="sectionTitle mb-10">Contact</h1>
+      <div
+        className="
+          mx-auto
+          max-w-7xl
+          overflow-hidden
+          rounded-[2rem]
+          border
+          border-[var(--border-color)]
+          bg-[var(--background-color)]
+          shadow-xl
+        "
+      >
+        <div className="grid lg:grid-cols-2">
+          {/* LEFT SIDE */}
+          <div
+            className="
+              flex
+              flex-col
+              justify-between
+              border-b
+              border-[var(--border-color)]
+              p-8
+              md:p-12
+              lg:border-b-0
+              lg:border-r
+            "
+          >
+            <div>
+              <span
+                className="
+                  text-sm
+                  font-semibold
+                  uppercase
+                  tracking-[0.25em]
+                  text-custom-orange
+                "
+              >
+                Contact
+              </span>
 
-        {/* Use flex-col for small screens, flex-row for larger screens */}
-        <div className="flex flex-col gap-8 mb-10 md:w-full md:flex-row md:justify-between">
-          {/* About Me Section */}
-          <div className="bg-[var(--background-color)] border border-[var(--text-color)] rounded-2xl p-4 sm:p-5 shadow-md md:w-[48%] sm:w-[24%] mx-auto">
-            <h2 className="mb-4 text-[var(--text-color)] text-lg sm:text-xl">
-              About Me
-            </h2>
-            <p className="text-left text-[var(--text-color)] leading-relaxed">
-              Over the past two years, I’ve worked on a range of projects—from
-              full-stack web applications to Python automation scripts. I’m
-              passionate about creating intuitive, scalable, and user-focused
-              digital solutions. Whether it’s designing clean interfaces or
-              building efficient backend systems, I thrive on solving real-world
-              problems with technology. I’m always eager to explore new tools
-              and technologies and contribute to impactful projects.
-            </p>
+              <h2
+                className="
+                  mt-6
+                  text-4xl
+                  font-bold
+                  leading-tight
+                  text-[var(--text-color)]
+                  md:text-5xl
+                "
+              >
+                Let’s build
+                <br />
+                something great.
+              </h2>
+
+              <p
+                className="
+                  mt-6
+                  max-w-lg
+                  text-base
+                  leading-relaxed
+                  text-[var(--text-color)]
+                  opacity-80
+                "
+              >
+                Available for freelance projects,
+                collaborations, and full-stack
+                development opportunities.
+              </p>
+            </div>
+
+            {/* CONTACT INFO */}
+            <div className="mt-12 space-y-5">
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-4
+                  rounded-2xl
+                  border
+                  border-[var(--border-color)]
+                  p-4
+                "
+              >
+                <div
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-custom-orange/10
+                    text-custom-orange
+                  "
+                >
+                  <FiMail size={20} />
+                </div>
+
+                <div>
+                  <p className="text-sm opacity-60">
+                    Email
+                  </p>
+                  <p className="font-medium">
+                    sagardebnath1001@gmail.com
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-4
+                  rounded-2xl
+                  border
+                  border-[var(--border-color)]
+                  p-4
+                "
+              >
+                <div
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-custom-orange/10
+                    text-custom-orange
+                  "
+                >
+                  <FiPhone size={20} />
+                </div>
+
+                <div>
+                  <p className="text-sm opacity-60">
+                    Phone
+                  </p>
+                  <p className="font-medium">
+                    +91 9383270893
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-4
+                  rounded-2xl
+                  border
+                  border-[var(--border-color)]
+                  p-4
+                "
+              >
+                <div
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-custom-orange/10
+                    text-custom-orange
+                  "
+                >
+                  <FiMapPin size={20} />
+                </div>
+
+                <div>
+                  <p className="text-sm opacity-60">
+                    Location
+                  </p>
+                  <p className="font-medium">
+                    Agartala, Tripura, India
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Contact Information Section */}
-          <div className="bg-[var(--background-color)] border border-[var(--text-color)] rounded-2xl p-4  shadow-md md:w-[48%]  mx-auto">
-            <h2 className="mb-4 text-[var(--text-color)] text-lg sm:text-xl">
-              Contact Information
-            </h2>
-            <ul className="list-none p-0 text-left leading-relaxed">
-              <li className="mb-2 text-[var(--text-color)] text-lg sm:text-xl">
-                <FiMail className="inline mr-2" />
-                Mail: sagardebnath1001@gmail.com
-              </li>
-              <li className="mb-2 text-[var(--text-color)] text-lg sm:text-xl">
-                <FiPhone className="inline mr-2" />
-                Phone: 9383270893
-              </li>
-              <li className="text-[var(--text-color)] text-lg sm:text-xl">
-                <FiMapPin className="inline mr-2" />
-                Location: Agartala, Tripura/India
-              </li>
-            </ul>
+          {/* RIGHT SIDE */}
+          <div className="p-8 md:p-12">
+            <div className="mb-8">
+              <h3
+                className="
+                  text-2xl
+                  font-bold
+                  text-[var(--text-color)]
+                "
+              >
+                Send a message
+              </h3>
+
+              <p
+                className="
+                  mt-2
+                  text-sm
+                  text-[var(--text-color)]
+                  opacity-70
+                "
+              >
+                I’ll get back to you as soon as
+                possible.
+              </p>
+            </div>
+
+            <form
+              ref={formRef}
+              onSubmit={sendEmail}
+              className="space-y-6"
+            >
+              {/* NAME */}
+              <div>
+                <label
+                  htmlFor="name"
+                  className="
+                    mb-2
+                    block
+                    text-sm
+                    font-medium
+                    text-[var(--text-color)]
+                  "
+                >
+                  Name
+                </label>
+
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Your name"
+                  required
+                  className="
+                    h-14
+                    w-full
+                    rounded-2xl
+                    border
+                    border-[var(--border-color)]
+                    bg-transparent
+                    px-5
+                    outline-none
+                    transition
+                    focus:border-custom-orange
+                  "
+                />
+              </div>
+
+              {/* EMAIL */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="
+                    mb-2
+                    block
+                    text-sm
+                    font-medium
+                    text-[var(--text-color)]
+                  "
+                >
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="your@email.com"
+                  required
+                  className="
+                    h-14
+                    w-full
+                    rounded-2xl
+                    border
+                    border-[var(--border-color)]
+                    bg-transparent
+                    px-5
+                    outline-none
+                    transition
+                    focus:border-custom-orange
+                  "
+                />
+              </div>
+
+              {/* MESSAGE */}
+              <div>
+                <label
+                  htmlFor="message"
+                  className="
+                    mb-2
+                    block
+                    text-sm
+                    font-medium
+                    text-[var(--text-color)]
+                  "
+                >
+                  Message
+                </label>
+
+                <textarea
+                  name="message"
+                  id="message"
+                  placeholder="Tell me about your project..."
+                  required
+                  className="
+                    min-h-[180px]
+                    w-full
+                    rounded-2xl
+                    border
+                    border-[var(--border-color)]
+                    bg-transparent
+                    p-5
+                    outline-none
+                    resize-none
+                    transition
+                    focus:border-custom-orange
+                  "
+                />
+              </div>
+
+              {/* BUTTON */}
+              <button
+                type="submit"
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  rounded-2xl
+                  bg-custom-orange
+                  px-7
+                  py-4
+                  font-semibold
+                  text-white
+                  transition-all
+                  duration-300
+                  hover:scale-[1.02]
+                  hover:shadow-lg
+                "
+              >
+                Send Message
+                <FiSend size={18} />
+              </button>
+
+              {/* STATUS */}
+              {status && (
+                <p
+                  className={`text-sm font-medium ${
+                    status.includes("Failed")
+                      ? "text-red-500"
+                      : "text-green-500"
+                  }`}
+                >
+                  {status}
+                </p>
+              )}
+            </form>
           </div>
         </div>
-
-        {/* Contact Form */}
-        <form
-          ref={formRef}
-          onSubmit={sendEmail}
-          className="flex flex-col gap-8 md:gap-10  focus:ring-2 focus:ring-[var(--btn-color)] outline-none"
-        >
-          <h2 className="mb-5 text-[var(--text-color)]">Get in Touch</h2>
-
-          {/* Name Input */}
-          <div className="flex flex-col items-center">
-            <label htmlFor="name" hidden>
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Name"
-              required
-              className="h-12 px-4 w-64 md:w-[600px] lg:w-[800px] rounded-2xl border border-gray-400 bg-[var(--background-color)] text-[var(--form-text-color)] placeholder-[var(--form-text-color)]"
-            />
-          </div>
-
-          {/* Email Input */}
-          <div className="flex flex-col items-center">
-            <label htmlFor="email" hidden>
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              required
-              className="h-12 px-4 w-64 md:w-[600px] lg:w-[800px] rounded-2xl border border-gray-400 bg-[var(--background-color)] text-[var(--form-text-color)] placeholder-[var(--form-text-color)]"
-            />
-          </div>
-
-          {/* Message Input */}
-          <div className="flex flex-col items-center">
-            <label htmlFor="message" hidden>
-              Message
-            </label>
-            <textarea
-              name="message"
-              id="message"
-              placeholder="Message"
-              required
-              className="h-64 p-4 w-64 md:w-[600px] lg:w-[800px] rounded-2xl border border-gray-400 bg-[var(--background-color)] text-[var(--form-text-color)] placeholder-[var(--form-text-color)] resize-none"
-            ></textarea>
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="bg-[var(--btn-color)] text-[var(--btn-text-color)] rounded-2xl w-32 h-12 text-lg font-bold shadow-md transition-transform duration-200 transform hover:scale-105 active:translate-y-0.5 mx-auto"
-          >
-            Submit
-          </button>
-          {status && (
-            <p
-              className={`text-center mt-2 ${status.includes("fail") ? "text-red-500" : "text-green-500"}`}
-            >
-              {status}
-            </p>
-          )}
-        </form>
       </div>
     </section>
   );

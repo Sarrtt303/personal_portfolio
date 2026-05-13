@@ -1,80 +1,348 @@
-import heroImg from "../../assets/profilepic.jpg";
-import sun from "../../assets/sun.svg";
-import moon from "../../assets/moon.svg";
+// pages/Home/Hero.jsx
+
 import twitterLight from "../../assets/twitter-light.svg";
 import twitterDark from "../../assets/twitter-dark.svg";
+
 import githubLight from "../../assets/github-light.svg";
 import githubDark from "../../assets/github-dark.svg";
+
 import linkedinLight from "../../assets/linkedin-light.svg";
 import linkedinDark from "../../assets/linkedin-dark.svg";
+
 import CV from "../../assets/cv(Sept).pdf";
+
 import { useTheme } from "../../components/ThemeContext";
 
-function Hero() {
-  const { theme, toggleTheme } = useTheme();
+import RotatingMoon from "../../components/RotatingMoon";
 
-  const themeIcon = theme === "light" ? sun : moon;
-  const twitterIcon = theme === "light" ? twitterLight : twitterDark;
-  const githubIcon = theme === "light" ? githubLight : githubDark;
-  const linkedinIcon = theme === "light" ? linkedinLight : linkedinDark;
+function Hero() {
+  const { theme } = useTheme();
+
+  const twitterIcon =
+    theme === "light"
+      ? twitterLight
+      : twitterDark;
+
+  const githubIcon =
+    theme === "light"
+      ? githubLight
+      : githubDark;
+
+  const linkedinIcon =
+    theme === "light"
+      ? linkedinLight
+      : linkedinDark;
 
   return (
     <section
       id="hero"
-      className="flex flex-col justify-center gap-5 text-center md:h-[100dvh] min-h-[500px] md:flex-row-reverse md:justify-evenly lg:flex-row lg:justify-evenly xl:justify-evenly xl:gap-10"
+      className="
+        relative
+        min-h-screen
+        overflow-hidden
+        px-6
+        md:px-12
+        lg:px-20
+        flex
+        items-center
+      "
     >
-      <div className="relative flex flex-col items-center mb-4 md:mb-0">
-        <img
-          src={heroImg}
-          className="w-[150px] h-[150px] rounded-full border-2 border-gray-300 object-cover md:w-[25vh] md:h-[25vh] lg:w-[30vh] lg:h-[30vh] xl:w-[40vh] xl:h-[40vh] transition-width duration-300 ease-in-out"
-          alt="Profile picture of RInkiya KE PapA"
-        />
-        <img
-          className="absolute bottom-8  w-10 cursor-pointer md:bottom-auto md:top-0 md:right-0  md:w-12 md:h-12"
-          src={themeIcon}
-          alt="Color mode icon"
-          onClick={toggleTheme}
-        />
-      </div>
-      <div className="flex flex-col justify-center items-center gap-5">
-        <h1 className="text-xl">Hi, I am,</h1>
-        <h1 className="text-4xl font-bold">
-          Sagar
-          <br />
-          Debnath
-        </h1>
-        <h2 className="text-2xl">Web Developer</h2>
-        <span className="flex gap-6 justify-center">
-          <a href="https://twitter.com/" target="_blank" className="m-0">
-            <img src={twitterIcon} alt="Twitter icon" className="w-[30px]" />
-          </a>
-          <a
-            href="https://github.com/Sarrtt303"
-            target="_blank"
-            className="m-0"
+      {/* ===================================== */}
+      {/* Background Glow */}
+      {/* ===================================== */}
+
+      <div
+        className={`
+          absolute
+          top-1/2
+          right-[-120px]
+          -translate-y-1/2
+          w-[420px]
+          h-[420px]
+          rounded-full
+          blur-3xl
+          opacity-20
+          pointer-events-none
+          transition-all
+          duration-500
+
+          ${theme === "dark"
+            ? "bg-blue-500"
+            : "bg-yellow-300"
+          }
+        `}
+      />
+
+      {/* ===================================== */}
+      {/* Main Content */}
+      {/* ===================================== */}
+
+      <div
+        className="
+          relative
+          z-10
+          w-full
+          max-w-7xl
+          mx-auto
+          grid
+          grid-cols-1
+          lg:grid-cols-2
+          items-center
+          gap-10
+        "
+      >
+        {/* ===================================== */}
+        {/* LEFT SIDE */}
+        {/* ===================================== */}
+
+        <div
+          className="
+            flex
+            flex-col
+            items-center
+            text-center
+            lg:items-start
+            lg:text-left
+          "
+        >
+          {/* Small Badge */}
+
+          <div
+            className="
+              mb-5
+              px-4
+              py-2
+              rounded-full
+              border
+              border-[var(--border-color)]
+              bg-[var(--card-bg)]
+              backdrop-blur-md
+              text-sm
+              text-[var(--text-color)]
+              shadow-sm
+            "
           >
-            <img src={githubIcon} alt="Github icon" className="w-[30px]" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/sagar-debnath-50410021a/"
-            target="_blank"
-            className="m-0"
+            Frontend Engineer • React • Three.js
+          </div>
+
+          {/* Heading */}
+
+          <h1
+            className="
+              text-5xl
+              sm:text-6xl
+              lg:text-7xl
+              font-black
+              leading-none
+              tracking-tight
+              mb-6
+            "
           >
-            <img src={linkedinIcon} alt="Linkedin icon" className="w-[30px]" />
-          </a>
-        </span>
-        <p className="max-w-[24ch] text-center">
-          I craft modern, scalable web applications using React, Tailwind CSS,
-          and Next.js — with a focus on clean code, real-world performance, and
-          best industry practices. Every project is built with care,
-          reliability, and a commitment to delivering high-quality user
-          experiences that drive real business results.
-        </p>
-        <a href={CV} download className="self-center">
-          <button className="bg-[var(--btn-color)] text-[var(--btn-text-color)] rounded-full w-[126px] h-[50px] text-lg font-bold shadow-md transition-transform duration-200 ease-in-out transform hover:scale-105 active:translate-y-0.5 active:shadow-sm">
-            Resume
-          </button>
-        </a>
+            Building
+            <br />
+
+            <span
+              className={`
+                ${theme === "dark"
+                  ? "text-blue-400"
+                  : "text-amber-500"
+                }
+              `}
+            >
+              immersive
+            </span>
+
+            <br />
+
+            web experiences.
+          </h1>
+
+          {/* Subtitle */}
+
+          <p
+            className="
+              text-base
+              sm:text-lg
+              leading-relaxed
+              text-[var(--text-color)]
+              opacity-80
+              max-w-[620px]
+              mb-8
+            "
+          >
+            I create scalable frontend
+            systems using React,
+            Tailwind CSS, Three.js and
+            modern UI architecture —
+            focused on smooth UX,
+            performance and clean
+            developer experience.
+          </p>
+
+          {/* Buttons */}
+
+          <div
+            className="
+              flex
+              flex-wrap
+              items-center
+              gap-4
+              mb-10
+            "
+          >
+            <a href={CV} download>
+              <button
+                className="
+                  px-7
+                  h-12
+                  rounded-full
+                  font-semibold
+                  transition-all
+                  duration-300
+                  hover:scale-105
+
+                  bg-[var(--btn-color)]
+                  text-[var(--btn-text-color)]
+
+                  shadow-lg
+                "
+              >
+                Download Resume
+              </button>
+            </a>
+
+            <a href="#projects">
+              <button
+                className="
+                  px-7
+                  h-12
+                  rounded-full
+                  font-semibold
+                  border
+
+                  border-[var(--border-color)]
+
+                  hover:bg-[var(--card-bg)]
+
+                  transition-all
+                  duration-300
+                "
+              >
+                View Projects
+              </button>
+            </a>
+          </div>
+
+          {/* Socials */}
+
+          <div
+            className="
+              flex
+              items-center
+              gap-6
+            "
+          >
+            <a
+              href="https://twitter.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="
+                hover:scale-110
+                transition-transform
+              "
+            >
+              <img
+                src={twitterIcon}
+                alt="Twitter"
+                className="w-7"
+              />
+            </a>
+
+            <a
+              href="https://github.com/Sarrtt303"
+              target="_blank"
+              rel="noreferrer"
+              className="
+                hover:scale-110
+                transition-transform
+              "
+            >
+              <img
+                src={githubIcon}
+                alt="GitHub"
+                className="w-7"
+              />
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/sagar-debnath-50410021a/"
+              target="_blank"
+              rel="noreferrer"
+              className="
+                hover:scale-110
+                transition-transform
+              "
+            >
+              <img
+                src={linkedinIcon}
+                alt="LinkedIn"
+                className="w-7"
+              />
+            </a>
+          </div>
+        </div>
+
+        {/* ===================================== */}
+        {/* RIGHT SIDE */}
+        {/* ===================================== */}
+
+        <div
+          className="
+            relative
+            flex
+            items-center
+            justify-center
+            h-[400px]
+            md:h-[500px]
+            lg:h-[700px]
+          "
+        >
+          {/* Moon */}
+
+          <RotatingMoon
+            rotationSpeed={0.0009}
+            size={
+              window.innerWidth < 768
+                ? 240
+                : 420
+            }
+            className="
+              relative
+              z-10
+              opacity-95
+            "
+          />
+
+          {/* Secondary Glow */}
+
+          <div
+            className={`
+              absolute
+              w-[300px]
+              h-[300px]
+              md:w-[500px]
+              md:h-[500px]
+              rounded-full
+              blur-3xl
+              opacity-20
+
+              ${theme === "dark"
+                ? "bg-indigo-500"
+                : "bg-orange-300"
+              }
+            `}
+          />
+        </div>
       </div>
     </section>
   );
